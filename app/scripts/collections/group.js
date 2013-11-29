@@ -9,7 +9,8 @@ define([
     'use strict';
 
     App.GroupCollection = Backbone.Collection.extend({
-        model: GroupModel
+        model: GroupModel,
+        url: '/api/group'
     });
 
     return App.GroupCollection;

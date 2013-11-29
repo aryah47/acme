@@ -9,7 +9,8 @@ define([
     'use strict';
 
     App.NamespaceCollection = Backbone.Collection.extend({
-        model: NamespaceModel
+        model: NamespaceModel,
+        url: '/api/namespace'
     });
 
     return App.NamespaceCollection;

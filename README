@@ -2,3 +2,19 @@ flexible cms system for the social internet club ACME.
 nodejs backend, backbonejs client, jQuery ofc.
 
 I'll put something more professional in here eventually...
+
+some notes:
+===========
+
+* grunt build for the servable
+* grunt server for the devserver
+
+
+order:
+------
+
+1) main loads router
+2) router loads view
+3) view loads collections
+4) collections use models
+5) appstate model somewhere around here

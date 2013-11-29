@@ -9,7 +9,9 @@ define([
     'use strict';
 
     App.PageCollection = Backbone.Collection.extend({
-        model: PageModel
+        model: PageModel,
+        url : '/api/page'
+
     });
 
     return App.PageCollection;
