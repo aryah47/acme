@@ -9,7 +9,8 @@ define([
     'use strict';
 
     App.RevisionCollection = Backbone.Collection.extend({
-        model: RevisionModel
+        model: RevisionModel,
+        url: '/api/revision'
     });
 
     return App.RevisionCollection;

@@ -9,7 +9,8 @@ define([
     'use strict';
 
     App.TextCollection = Backbone.Collection.extend({
-        model: TextModel
+        model: TextModel,
+        url : '/api/text'
     });
 
     return App.TextCollection;

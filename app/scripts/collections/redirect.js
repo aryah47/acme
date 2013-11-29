@@ -9,7 +9,8 @@ define([
     'use strict';
 
     App.RedirectCollection = Backbone.Collection.extend({
-        model: RedirectModel
+        model: RedirectModel,
+        url: '/api/redirect'
     });
 
     return App.RedirectCollection;

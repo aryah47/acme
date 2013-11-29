@@ -9,7 +9,8 @@ define([
     'use strict';
 
     App.UserCollection = Backbone.Collection.extend({
-        model: UserModel
+        model: UserModel,
+        url: '/api/user'
     });
 
     return App.UserCollection;

@@ -9,7 +9,8 @@ define([
     'use strict';
 
     App.TemplateCollection = Backbone.Collection.extend({
-        model: TemplateModel
+        model: TemplateModel,
+        url: '/api/template'
     });
 
     return App.TemplateCollection;
