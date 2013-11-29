@@ -42,6 +42,7 @@ define([
             console.log('onRoot');
             console.log('set RootView');
 
+            // magic name 'root'
             var rootModel = App.pageCollection.get('root');
             var rootView = new RootView({model: rootModel});
             rootView.render();
@@ -59,9 +60,12 @@ define([
 
         },
 
-        onEdit : function (page) {
-            console.log('onEdit');
-            console.log(page);
+        onEdit : function (page, ns) {
+            /*jshint -W004*/
+            var ns = ns || 'page';
+            /*jshint +W004*/
+
+            return this.onForm('/form:' + ns + '?pg=' + page);
         },
 
         onRevision : function (page) {
@@ -69,6 +73,7 @@ define([
             console.log(page);
 
             var pageModel = App.pageCollection.get(page);
+            // revision list, by page model
             var revisionView = new RevisionView({model: pageModel});
             revisionView.render();
         },
@@ -77,39 +82,52 @@ define([
             console.log('onForm');
             console.log(path);
 
-            var formModel = App.pageCollection.get('form');
+            // form is a type of page
+            var formModel = App.pageCollection.get(path);
             var formView = new FormView({model: formModel});
             formView.render();
         },
 
+
+        // other models, needing different collections
+        // idea is - used only for inclusion into normal pages
+        // sooo, a page could be a list
+        // and elements these??
+        // q is when to fetch
         onNamespace : function (path) {
             console.log('onNamespace');
-            var namespaceView = new NamespaceView({model: namespaceModel});
+
+            var namespaceModel = App.namespaceCollection.get(path);
+            var namespaceView = new NamespaceView(
+                {model: namespaceModel}
+            );
             namespaceView.render();
         },
 
         onUser : function (path) {
             console.log('onUser');
+            var userModel = {};
             var userView = new UserView({model: userModel});
             userView.render();
         },
 
         onGroup : function (path) {
             console.log('onGroup');
+            var groupModel = {};
             var groupView = new GroupView({model: groupModel});
             groupView.render();
         },
 
         onTemplate : function (path) {
             console.log('onTemplate');
-
+            var templateModel = {};
             var templateView = new TemplateView({model: templateModel});
             templateView.render();
         },
 
         onRedirect : function (path) {
             console.log('onRedirect');
-
+            var redirectModel = {};
             var redirectView = new RedirectView({model: redirectModel});
             redirectView.render();
         }
@@ -127,9 +145,17 @@ define([
     // main def
     App.init = function () {
         Backbone.history.start();
+
+        // XXX cute but I can't initialize all collections here
+        // anyhow it will be a .fetch(), not explicit creation ofc
         this.pageCollection = new PageCollection([
             {path: 'acme', html: 'ef'},
             {path: 'pop', html: 'uh'}
+        ]);
+
+        this.namespaceCollection = new NamespaceCollection([
+            {path: 'ef'},
+            {path: 'uf'}
         ]);
 
         // any further initialization

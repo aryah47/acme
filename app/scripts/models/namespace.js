@@ -8,6 +8,7 @@ define([
     'use strict';
 
     App.NamespaceModel = Backbone.Model.extend({
+        idAttribute: 'path',
         defaults: {
         }
     });

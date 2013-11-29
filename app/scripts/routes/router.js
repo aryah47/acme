@@ -16,26 +16,37 @@ define([
             '' : 'root',
 
             'form:*path/rev' : 'revision',
-            'form:*page/edit' : 'editForm',
+            'form:*page/edit' : function (page) {
+                return App.api.onEdit(page, 'form');
+            },
+
             'form:*path' : 'form',
 
-            // careful - this needs thinking through!
-            // editform somehow calls to form page
-            // blah/edit is actually form:otherblah/?pg=blah
-
-            'ns:*page/edit' : 'editForm',
+            'ns:*page/edit' : function (page) {
+                return App.api.onEdit(page, 'ns');
+            },
             'ns:*path' : 'namespace',
 
-            'usr:*page/edit' : 'editForm',
+            'usr:*page/edit' : function (page) {
+                return App.api.onEdit(page, 'usr');
+            },,
             'usr:*path' : 'user',
 
-            'grp:*page/edit' : 'editForm',
+            'grp:*page/edit' : function (page) {
+                return App.api.onEdit(page, 'grp');
+            },,
             'grp:*path' : 'group',
 
-            'tmpl:*page/edit' : 'editForm',
+            'tmpl:*page/edit' : function (page) {
+                return App.api.onEdit(page, 'tmpl');
+            },,
             'tmpl:*path' : 'template',
 
-            'redir:*page/edit' : 'editForm',
+            // hmmm jel ovo stvarno valja? redir kao objekt?
+            // distinktan od stranice koja redirecta?
+            'redir:*page/edit' : function (page) {
+                return App.api.onEdit(page, 'redir');
+            },,
             'redir:*path' : 'redirect',
 
             '*page/edit' : 'edit',
