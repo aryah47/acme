@@ -9,9 +9,9 @@ define([
 ], function ($, _, Backbone, JST, App) {
     'use strict';
 
-    App.ListView = Backbone.View.extend({
-        template: JST['app/scripts/templates/list.hbs']
+    App.FormView = Backbone.View.extend({
+        template: JST['app/scripts/templates/form.hbs']
     });
 
-    return App.ListView;
+    return App.FormView;
 });

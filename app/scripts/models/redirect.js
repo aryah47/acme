@@ -2,14 +2,15 @@
 
 define([
     'underscore',
-    'backbone'
-], function (_, Backbone) {
+    'backbone',
+    'app'
+], function (_, Backbone, App) {
     'use strict';
 
-    var RedirectModel = Backbone.Model.extend({
+    App.RedirectModel = Backbone.Model.extend({
         defaults: {
         }
     });
 
-    return RedirectModel;
+    return App.RedirectModel;
 });

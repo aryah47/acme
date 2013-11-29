@@ -7,13 +7,10 @@ define([
 ], function (_, Backbone, App) {
     'use strict';
 
-    App.PageModel = Backbone.Model.extend({
-        idAttribute: 'path',
+    App.TemplateModel = Backbone.Model.extend({
         defaults: {
-            path : '',
-            html : ''
         }
     });
 
-    return App.PageModel;
+    return App.TemplateModel;
 });

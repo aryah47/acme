@@ -2,14 +2,15 @@
 
 define([
     'underscore',
-    'backbone'
-], function (_, Backbone) {
+    'backbone',
+    'app'
+], function (_, Backbone, App) {
     'use strict';
 
-    var NamespaceModel = Backbone.Model.extend({
+    App.NamespaceModel = Backbone.Model.extend({
         defaults: {
         }
     });
 
-    return NamespaceModel;
+    return App.NamespaceModel;
 });

@@ -2,14 +2,15 @@
 
 define([
     'underscore',
-    'backbone'
-], function (_, Backbone) {
+    'backbone',
+    'app'
+], function (_, Backbone, App) {
     'use strict';
 
-    var UserModel = Backbone.Model.extend({
+    App.UserModel = Backbone.Model.extend({
         defaults: {
         }
     });
 
-    return UserModel;
+    return App.UserModel;
 });

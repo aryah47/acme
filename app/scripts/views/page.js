@@ -4,13 +4,15 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'templates'
-], function ($, _, Backbone, JST) {
+    'templates',
+    'app'
+], function ($, _, Backbone, JST, App) {
     'use strict';
 
-    var PageView = Backbone.View.extend({
+    App.PageView = Backbone.View.extend({
+        el: '#center',
         template: JST['app/scripts/templates/page.hbs']
     });
 
-    return PageView;
+    return App.PageView;
 });

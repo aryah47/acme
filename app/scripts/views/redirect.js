@@ -9,9 +9,9 @@ define([
 ], function ($, _, Backbone, JST, App) {
     'use strict';
 
-    App.ListView = Backbone.View.extend({
-        template: JST['app/scripts/templates/list.hbs']
+    App.RedirectView = Backbone.View.extend({
+        template: JST['app/scripts/templates/redirect.hbs']
     });
 
-    return App.ListView;
+    return App.RedirectView;
 });

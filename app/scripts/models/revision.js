@@ -2,14 +2,15 @@
 
 define([
     'underscore',
-    'backbone'
-], function (_, Backbone) {
+    'backbone',
+    'app'
+], function (_, Backbone, App) {
     'use strict';
 
-    var RevisionModel = Backbone.Model.extend({
+    App.RevisionModel = Backbone.Model.extend({
         defaults: {
         }
     });
 
-    return RevisionModel;
+    return App.RevisionModel;
 });

@@ -2,14 +2,15 @@
 
 define([
     'underscore',
-    'backbone'
-], function (_, Backbone) {
+    'backbone',
+    'app'
+], function (_, Backbone, App) {
     'use strict';
 
-    var TextModel = Backbone.Model.extend({
+    App.TextModel = Backbone.Model.extend({
         defaults: {
         }
     });
 
-    return TextModel;
+    return App.TextModel;
 });
