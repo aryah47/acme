@@ -1,10 +1,11 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var SERVER_PORT = 9000;
-var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (connect, dir) {
-    return connect.static(require('path').resolve(dir));
-};
+// var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
+
+
+//var path = require('path');
+
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -22,7 +23,10 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app',
-        dist: 'dist'
+        dist: 'dist',
+
+        static: 'static',
+        server: 'server'
     };
 
     grunt.initConfig({
@@ -47,7 +51,7 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass']
             },
-            livereload: {
+            livereload: { // XXX doesn't seem to work?
                 options: {
                     livereload: LIVERELOAD_PORT
                 },
@@ -57,7 +61,8 @@ module.exports = function (grunt) {
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                     '<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
-                    'test/spec/**/*.js'
+                    'test/spec/**/*.js',
+                    '<%= yeoman.server %>'
                 ]
             },
             handlebars: {
@@ -71,51 +76,79 @@ module.exports = function (grunt) {
                 tasks: ['test']
             }
         },
-        connect: {
-            options: {
-                port: SERVER_PORT,
-                // change this to '0.0.0.0' to access the server from outside
-                hostname: 'localhost'
-            },
-            livereload: {
-                options: {
-                    middleware: function (connect) {
-                        return [
-                            lrSnippet,
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, yeomanConfig.app)
-                        ];
-                    }
+
+        express : {
+            myServer: {
+                options : {
+                    server: '<%= yeoman.server %>',
+                    bases: ['.tmp', '<%= yeoman.static %>'],
+                    port: SERVER_PORT,
+                    hostname: 'localhost'
                 }
             },
-            test: {
-                options: {
-                    port: 9001,
-                    middleware: function (connect) {
-                        return [
-                            lrSnippet,
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test'),
-                            mountFolder(connect, yeomanConfig.app)
-                        ];
-                    }
+
+            myLivereloadServer : { // not really reloading on server stuff???
+                options : {
+                    server: '<%= yeoman.server %>',
+                    bases: ['.tmp', '<%= yeoman.static %>'],
+                    port: LIVERELOAD_PORT,
+                    hostname: 'localhost',
+                    livereload: true,
+                    serverreload: true
                 }
             },
-            dist: {
-                options: {
-                    middleware: function (connect) {
-                        return [
-                            mountFolder(connect, yeomanConfig.dist)
-                        ];
-                    }
-                }
-            }
         },
         open: {
             server: {
-                path: 'http://localhost:<%= connect.options.port %>'
+                path: 'http://localhost:<%= express.myServer.options.port %>'
             }
         },
+        // connect: {
+        //     options: {
+        //         port: SERVER_PORT,
+        //         // change this to '0.0.0.0' to access the server from outside
+        //         hostname: 'localhost'
+        //     },
+        //     livereload: {
+        //         options: {
+        //             middleware: function (connect) {
+        //                 return [
+        //                     lrSnippet,
+        //                     mountFolder(connect, '.tmp'),
+        //                     mountFolder(connect, yeomanConfig.app)
+        //                 ];
+        //             }
+        //         }
+        //     },
+        //     test: {
+        //         options: {
+        //             port: 9001,
+        //             middleware: function (connect) {
+        //                 return [
+        //                     lrSnippet,
+        //                     mountFolder(connect, '.tmp'),
+        //                     mountFolder(connect, 'test'),
+        //                     mountFolder(connect, yeomanConfig.app)
+        //                 ];
+        //             }
+        //         }
+        //     },
+        //     dist: {
+        //         options: {
+        //             middleware: function (connect) {
+        //                 return [
+        //                     mountFolder(connect, yeomanConfig.dist)
+        //                 ];
+        //             }
+        //         }
+        //     }
+        // },
+        // open: {
+        //     server: {
+        //         path: 'http://localhost:<%= connect.options.port %>'
+        //     }
+        // },
+
         clean: {
             dist: ['.tmp', '<%= yeoman.dist %>/*'],
             server: '.tmp'
@@ -302,13 +335,19 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-express');
+
     grunt.registerTask('createDefaultTemplate', function () {
         grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
     });
 
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+            return grunt.task.run([
+                'build',
+                'open',
+                //'connect:dist:keepalive'
+            ]);
         }
 
         if (target === 'test') {
@@ -318,8 +357,12 @@ module.exports = function (grunt) {
                 'createDefaultTemplate',
                 'handlebars',
                 'compass:server',
-                'connect:test',
-                'watch:livereload'
+
+//                'express',
+//                'express-keepalive'
+
+                // 'connect:test',
+                'watch:livereload' // XXX huh?
             ]);
         }
 
@@ -329,9 +372,13 @@ module.exports = function (grunt) {
             'createDefaultTemplate',
             'handlebars',
             'compass:server',
-            'connect:livereload',
+
+            'express',
+            'express-keepalive',
+
+            // 'connect:livereload',
             'open',
-            'watch'
+            'watch' // XXX huh?
         ]);
     });
 

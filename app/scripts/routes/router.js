@@ -1,6 +1,7 @@
 /*global define*/
 
-// This should be the only component aware of the actual URL routes. // Other views should use App.vent to trigger api fns
+// This should be the only component aware of the actual URL routes.
+// Other views should use App.vent to trigger api fns
 
 define([
     'jquery',
@@ -29,24 +30,24 @@ define([
 
             'usr:*page/edit' : function (page) {
                 return App.api.onEdit(page, 'usr');
-            },,
+            },
             'usr:*path' : 'user',
 
             'grp:*page/edit' : function (page) {
                 return App.api.onEdit(page, 'grp');
-            },,
+            },
             'grp:*path' : 'group',
 
             'tmpl:*page/edit' : function (page) {
                 return App.api.onEdit(page, 'tmpl');
-            },,
+            },
             'tmpl:*path' : 'template',
 
             // hmmm jel ovo stvarno valja? redir kao objekt?
             // distinktan od stranice koja redirecta?
             'redir:*page/edit' : function (page) {
                 return App.api.onEdit(page, 'redir');
-            },,
+            },
             'redir:*path' : 'redirect',
 
             '*page/edit' : 'edit',

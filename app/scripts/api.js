@@ -5,6 +5,7 @@
 define([
 
     'underscore',
+    'jquery',
     'backbone',
     'app',
 
@@ -27,7 +28,7 @@ define([
     'collections/text',
     'collections/user'
 
-], function (_, Backbone, App,
+], function (_, $, Backbone, App,
 
              RootView, PageView, FormView, GroupView, NamespaceView,
              RedirectView, TemplateView, UserView, RevisionView,
@@ -146,17 +147,20 @@ define([
     App.init = function () {
         Backbone.history.start();
 
-        // XXX cute but I can't initialize all collections here
-        // anyhow it will be a .fetch(), not explicit creation ofc
-        this.pageCollection = new PageCollection([
-            {path: 'acme', html: 'ef'},
-            {path: 'pop', html: 'uh'}
-        ]);
+        // only, we should be bootstraping it into index.HTML not in init
+        this.pageCollection = new PageCollection();
 
-        this.namespaceCollection = new NamespaceCollection([
-            {path: 'ef'},
-            {path: 'uf'}
-        ]);
+        var that = this;
+        $.when(this.pageCollection.fetch()).done(function () {
+            console.log(that.pageCollection);
+
+            that.pageCollection.forEach(function (one) {
+                console.log(one);
+            });
+        });
+
+        this.namespaceCollection = new NamespaceCollection();
+        this.namespaceCollection.fetch();
 
         // any further initialization
 

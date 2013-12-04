@@ -1,7 +1,11 @@
 {
   "name": "acme",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "3.x",
+    "consolidate": "0.4.0",
+    "handlebars": "1.0.x"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.0",
@@ -27,7 +31,8 @@
     "connect-livereload": "~0.2.0",
     "time-grunt": "~0.1.1",
     "jshint-stylish": "~0.1.3",
-    "grunt-defs": "~0.5.1"
+    "grunt-defs": "~0.5.1",
+    "grunt-express": "~1.2.1"
   },
   "engines": {
     "node": ">=0.8.0"
