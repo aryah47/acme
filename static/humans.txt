@@ -1,0 +1,40 @@
+/* TEAM */
+Programmer: Damjan Novak
+Site: https://www.zadarsnova.hr/u/damjan
+Location: Zadar, Croatia
+
+Design: Samanta Stepčić
+Site: https://www.zadarsnova.hr/u/sam
+Location: Zadar, Croatia
+
+Design: Siniša Kabić Peters
+Site: https://www.zadarsnova.hr/u/sine
+Location: Zadar, Croatia
+
+
+/* THANKS */
+Concept: Davor Fadić
+Site: https://www.zadarsnova.hr/u/davor
+Location: Zadar, Croatia
+
+Concept: Kristijan Mičić
+Site: https://www.zadarsnova.hr/u/kris
+Location: Zadar, Croatia
+
+Support: Zoran Kačanić
+Site: https://www.zadarsnova.hr/u/zoran
+Location: Zadar, Croatia
+
+Support: Tanja Župan
+Site: https://www.zadarsnova.hr/u/tanja
+Location: Zadar, Croatia
+
+
+/* SITE */
+Last Update: 2013/13/04
+Language: Croatian
+Standards: HTML5, CSS3, ECMAScript5
+Components: Modernizr, UnderscoreJS, jQuery, BackboneJS, ExpressJS, HandlebarsJS
+Components: Node-MySQL, Bootstrap, HTML5 Boilerplate, Raphael, Consolidate
+Software: RequireJS, UglifyJS, bower, yeoman, NodeJS, grunt
+Software: Emacs24, emacs-prelude, bash, grunt-backbone, grunt-express
