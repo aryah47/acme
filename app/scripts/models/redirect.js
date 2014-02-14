@@ -3,14 +3,17 @@
 define([
     'underscore',
     'backbone',
-    'app'
-], function (_, Backbone, App) {
+    'vent'
+], function (_, Backbone, vent) {
     'use strict';
 
-    App.RedirectModel = Backbone.Model.extend({
+    return Backbone.Model.extend({
         defaults: {
+            id: null
+            , revId: null
+            , redirUrl: null
+            , urlChange: null
         }
     });
 
-    return App.RedirectModel;
 });

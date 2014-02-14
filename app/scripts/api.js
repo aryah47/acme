@@ -2,12 +2,14 @@
 
 // loads all root views -- does it need to load
 
+// XXXX deprecated, app.js and main.js do it now w regions
+
 define([
 
     'underscore',
     'jquery',
     'backbone',
-    'app',
+
 
     'views/root', //show root page
     'views/page', //show any other page
@@ -145,7 +147,6 @@ define([
 
     // main def
     App.init = function () {
-        Backbone.history.start();
 
         // only, we should be bootstraping it into index.HTML not in init
         this.pageCollection = new PageCollection();

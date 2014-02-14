@@ -81,7 +81,7 @@ module.exports = function (grunt) {
             myServer: {
                 options : {
                     server: '<%= yeoman.server %>',
-                    bases: ['.tmp', '<%= yeoman.static %>'],
+                    bases: ['.tmp', '<%= yeoman.static %>', '<%= yeoman.app %>'],
                     port: SERVER_PORT,
                     hostname: 'localhost'
                 }
@@ -90,7 +90,7 @@ module.exports = function (grunt) {
             myLivereloadServer : { // not really reloading on server stuff???
                 options : {
                     server: '<%= yeoman.server %>',
-                    bases: ['.tmp', '<%= yeoman.static %>'],
+                    bases: ['.tmp', '<%= yeoman.static %>', '<%= yeoman.app %>'],
                     port: LIVERELOAD_PORT,
                     hostname: 'localhost',
                     livereload: true,

@@ -1,71 +1,41 @@
 /*global define*/
 
-// This should be the only component aware of the actual URL routes.
-// Other views should use App.vent to trigger api fns
-
 define([
     'jquery',
     'underscore',
-    'backbone',
-    'api',
-    'collections/page',
-], function ($, _, Backbone, App, PageCollection) {
+    'marionette',
+], function ($, _, Marionette) {
     'use strict';
 
-    App.AcmeRouter = Backbone.Router.extend({
-        routes: {
-            '' : 'root',
+    return Marionette.AppRouter.extend({
+        appRoutes: {
+            '' : 'onRoot',
 
-            'form:*path/rev' : 'revision',
-            'form:*page/edit' : function (page) {
-                return App.api.onEdit(page, 'form');
-            },
+            'form:*path/rev' : 'onRevision',
+            'form:*page/edit' : 'onPageEdit',
 
-            'form:*path' : 'form',
+            'form:*path' : 'onForm',
 
-            'ns:*page/edit' : function (page) {
-                return App.api.onEdit(page, 'ns');
-            },
-            'ns:*path' : 'namespace',
+            'ns:*page/edit' : 'onNsEdit',
+            'ns:*path' : 'onNamespace',
 
-            'usr:*page/edit' : function (page) {
-                return App.api.onEdit(page, 'usr');
-            },
-            'usr:*path' : 'user',
+            'usr:*page/edit' : 'onUsrEdit',
+            'usr:*path' : 'onUser',
 
-            'grp:*page/edit' : function (page) {
-                return App.api.onEdit(page, 'grp');
-            },
-            'grp:*path' : 'group',
+            'grp:*page/edit' : 'onGrpEdit',
+            'grp:*path' : 'onGroup',
 
-            'tmpl:*page/edit' : function (page) {
-                return App.api.onEdit(page, 'tmpl');
-            },
-            'tmpl:*path' : 'template',
+            'tmpl:*page/edit' : 'onTmplEdit',
+            'tmpl:*path' : 'onTemplate',
 
-            // hmmm jel ovo stvarno valja? redir kao objekt?
-            // distinktan od stranice koja redirecta?
-            'redir:*page/edit' : function (page) {
-                return App.api.onEdit(page, 'redir');
-            },
-            'redir:*path' : 'redirect',
+            'redir:*page/edit' : 'onRedirEdit',
+            'redir:*path' : 'onRedirect',
 
-            '*page/edit' : 'edit',
-            '*page/rev' : 'revision',
-            '*page' : 'page'
-        },
-
-        root : App.api.onRoot,
-        form : App.api.onForm,
-        namespace : App.api.onNamespace,
-        user : App.api.onUser,
-        group : App.api.onGroup,
-        template : App.api.onTemplate,
-        redirect : App.api.onRedirect,
-        page : App.api.onPage,
-        edit : App.api.onEdit,
-        revision : App.api.onRevision
+            '*page/edit' : 'onEdit',
+            '*page/rev' : 'onRevision',
+            '*page' : 'reroute'
+        }
 
     });
-    return App.AcmeRouter;
+
 });

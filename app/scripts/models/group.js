@@ -3,14 +3,15 @@
 define([
     'underscore',
     'backbone',
-    'app'
-], function (_, Backbone, App) {
+    'vent'
+], function (_, Backbone, vent) {
     'use strict';
 
-    App.GroupModel = Backbone.Model.extend({
+    return Backbone.Model.extend({
         defaults: {
+            id: null
+            , name: null
         }
     });
 
-    return App.GroupModel;
 });

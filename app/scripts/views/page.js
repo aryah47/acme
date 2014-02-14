@@ -3,16 +3,15 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
+    'marionette',
     'templates',
-    'app'
-], function ($, _, Backbone, JST, App) {
+    'vent'
+], function ($, _, Marionette, JST, vent) {
     'use strict';
 
-    App.PageView = Backbone.View.extend({
+    return Marionette.ItemView.extend({
         el: '#center',
         template: JST['app/scripts/templates/page.hbs']
     });
 
-    return App.PageView;
 });

@@ -3,15 +3,14 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
+    'marionette',
     'templates',
-    'app'
-], function ($, _, Backbone, JST, App) {
+    'vent'
+], function ($, _, Marionette, JST, vent) {
     'use strict';
 
-    App.RevisionView = Backbone.View.extend({
+    return Marionette.ItemView.extend({
         template: JST['app/scripts/templates/revision.hbs']
     });
 
-    return App.RevisionView;
 });

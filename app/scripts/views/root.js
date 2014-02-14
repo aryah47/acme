@@ -3,16 +3,15 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
+    'marionette',
     'templates',
-    'app'
-], function ($, _, Backbone, JST, App) {
+    'vent'
+], function ($, _, Marionette, JST, vent) {
     'use strict';
 
-    App.RootView = Backbone.View.extend({
-        el: '#all',
+    return Marionette.ItemView.extend({
+
         template: JST['app/scripts/templates/root.hbs']
     });
 
-    return App.RootView;
 });

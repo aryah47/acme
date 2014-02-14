@@ -4,14 +4,13 @@ define([
     'underscore',
     'backbone',
     'models/namespace',
-    'app'
-], function (_, Backbone, NamespaceModel, App) {
+    'vent'
+], function (_, Backbone, NamespaceModel, vent) {
     'use strict';
 
-    App.NamespaceCollection = Backbone.Collection.extend({
+    return Backbone.Collection.extend({
         model: NamespaceModel,
         url: '/api/namespace'
     });
 
-    return App.NamespaceCollection;
 });

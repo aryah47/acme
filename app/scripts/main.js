@@ -15,28 +15,33 @@ require.config({
         },
         bootstrap: {
             deps: ['jquery'],
-            exports: 'jquery'
+            exports: 'jQuery'
         },
         handlebars: {
             exports: 'Handlebars'
         }
     },
     paths: {
+        bootstrap: 'vendor/bootstrap',
         jquery: '../bower_components/jquery/jquery',
         backbone: '../bower_components/backbone/backbone',
         underscore: '../bower_components/underscore/underscore',
-        bootstrap: 'vendor/bootstrap',
+        marionette: '../bower_components/marionette/lib/core/amd/backbone.marionette',
+        'backbone.wreqr' : '../bower_components/marionette/lib/core/amd/backbone.wreqr',
+        'backbone.eventbinder' : '../bower_components/marionette/lib/core/amd/backbone.eventbinder',
+        'backbone.babysitter' : '../bower_components/marionette/lib/core/amd/backbone.babysitter',
         handlebars: '../bower_components/handlebars/handlebars'
     }
 });
 
 require([
-    'api',
+    'backbone',
+    'app',
+    'controllers/controller',
     'routes/router'
-], function (App, AcmeRouter) {
-    // ordering is important
-    // don't trigger routes before filling up the api they use
-
-    window.App = App.init();
-    new AcmeRouter();
+], function (Backbone, app, AcmeController, AcmeRouter) {
+    window.app = app;
+    app.start();
+    new AcmeRouter({'controller' : new AcmeController()});
+    Backbone.history.start();
 });

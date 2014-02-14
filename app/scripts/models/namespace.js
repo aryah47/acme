@@ -3,15 +3,16 @@
 define([
     'underscore',
     'backbone',
-    'app'
-], function (_, Backbone, App) {
+    'vent'
+], function (_, Backbone, vent) {
     'use strict';
 
-    App.NamespaceModel = Backbone.Model.extend({
-        idAttribute: 'path',
+    return Backbone.Model.extend({
+//        idAttribute: 'path',
         defaults: {
+            id: null
+            , name: null
         }
     });
 
-    return App.NamespaceModel;
 });

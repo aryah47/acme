@@ -3,17 +3,26 @@
 define([
     'underscore',
     'backbone',
-    'app'
-], function (_, Backbone, App) {
+    'vent'
+], function (_, Backbone, vent) {
     'use strict';
 
-    App.PageModel = Backbone.Model.extend({
-        idAttribute: 'path',
+    return Backbone.Model.extend({
+        //idAttribute: 'path',
         defaults: {
-            path : '',
-            html : ''
+            id : null
+            , url: null
+
+            , activeNsId: null
+            , activeCatPgId: null
+            , activeName: null
+
+            , activeTextId: null
+            , activeTmplId: null
+
+            , activeRedirUrl: null
+            , activeUrlChange: null
         }
     });
 
-    return App.PageModel;
 });

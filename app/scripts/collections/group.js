@@ -4,14 +4,13 @@ define([
     'underscore',
     'backbone',
     'models/group',
-    'app'
-], function (_, Backbone, GroupModel, App) {
+    'vent'
+], function (_, Backbone, GroupModel, vent) {
     'use strict';
 
-    App.GroupCollection = Backbone.Collection.extend({
+    return Backbone.Collection.extend({
         model: GroupModel,
         url: '/api/group'
     });
 
-    return App.GroupCollection;
 });

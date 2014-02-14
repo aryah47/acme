@@ -4,14 +4,13 @@ define([
     'underscore',
     'backbone',
     'models/redirect',
-    'app'
-], function (_, Backbone, RedirectModel, App) {
+    'vent'
+], function (_, Backbone, RedirectModel, vent) {
     'use strict';
 
-    App.RedirectCollection = Backbone.Collection.extend({
+    return Backbone.Collection.extend({
         model: RedirectModel,
         url: '/api/redirect'
     });
 
-    return App.RedirectCollection;
 });

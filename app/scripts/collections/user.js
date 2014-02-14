@@ -4,14 +4,13 @@ define([
     'underscore',
     'backbone',
     'models/user',
-    'app'
-], function (_, Backbone, UserModel, App) {
+    'vent'
+], function (_, Backbone, UserModel, vent) {
     'use strict';
 
-    App.UserCollection = Backbone.Collection.extend({
+    return Backbone.Collection.extend({
         model: UserModel,
         url: '/api/user'
     });
 
-    return App.UserCollection;
 });

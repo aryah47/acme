@@ -4,15 +4,14 @@ define([
     'underscore',
     'backbone',
     'models/page',
-    'app'
-], function (_, Backbone, PageModel, App) {
+    'vent'
+], function (_, Backbone, PageModel, vent) {
     'use strict';
 
-    App.PageCollection = Backbone.Collection.extend({
+    return Backbone.Collection.extend({
         model: PageModel,
         url : '/api/page'
 
     });
 
-    return App.PageCollection;
 });

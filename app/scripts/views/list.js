@@ -3,15 +3,14 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
+    'marionette',
     'templates',
-    'app'
-], function ($, _, Backbone, JST, App) {
+    'vent'
+], function ($, _, Marionette, JST, vent) {
     'use strict';
 
-    App.ListView = Backbone.View.extend({
+    return Marionette.CollectionView.extend({
         template: JST['app/scripts/templates/list.hbs']
     });
 
-    return App.ListView;
 });

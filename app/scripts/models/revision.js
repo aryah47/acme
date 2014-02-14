@@ -3,14 +3,28 @@
 define([
     'underscore',
     'backbone',
-    'app'
-], function (_, Backbone, App) {
+    'vent'
+], function (_, Backbone, vent) {
     'use strict';
 
-    App.RevisionModel = Backbone.Model.extend({
+    return Backbone.Model.extend({
         defaults: {
+            id: null
+            , nsId: null
+            , pgId: null
+            , catPgId: null
+
+            , usrId: null
+            , groupId: null
+            , crud: null
+
+            , changeTimestamp: null
+            , name: null
+            , revComment: null
+
+            , textId: null
+            , tmplId: null
         }
     });
 
-    return App.RevisionModel;
 });

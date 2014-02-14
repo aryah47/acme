@@ -3,14 +3,16 @@
 define([
     'underscore',
     'backbone',
-    'app'
-], function (_, Backbone, App) {
+    'vent'
+], function (_, Backbone, vent) {
     'use strict';
 
-    App.UserModel = Backbone.Model.extend({
+    return Backbone.Model.extend({
         defaults: {
+            id: null
+            , alias: null
+            , eMail: null
         }
     });
 
-    return App.UserModel;
 });

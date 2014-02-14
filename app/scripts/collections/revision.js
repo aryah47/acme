@@ -4,14 +4,13 @@ define([
     'underscore',
     'backbone',
     'models/revision',
-    'app'
-], function (_, Backbone, RevisionModel, App) {
+    'vent'
+], function (_, Backbone, RevisionModel, vent) {
     'use strict';
 
-    App.RevisionCollection = Backbone.Collection.extend({
+    return Backbone.Collection.extend({
         model: RevisionModel,
         url: '/api/revision'
     });
 
-    return App.RevisionCollection;
 });
